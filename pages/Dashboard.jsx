@@ -66,31 +66,84 @@ function Dashboard() {
 
             </div>
 
+
+            <div className="grid grid-cols-4 gap-4">
+      {/* Row 1 */}
+      <div className="col-span-4 sm:col-span-2 xl:col-span-1">
+        <DashboardCard01 
+        title= "Total Page Visits"
+        value="15,002"
+        />
+      </div>
+      <div className="col-span-4 sm:col-span-2 xl:col-span-1">
+        <DashboardCard01
+        title= "Unique users"
+        value="8,085" />
+      </div>
+      <div className="col-span-4 sm:col-span-2 xl:col-span-1">
+        <DashboardCard01
+        title= "Avge Session Duration"
+        value="00:02:42" />
+      </div>
+      <div className="col-span-4 sm:col-span-2 xl:col-span-1">
+        <DashboardCard01
+        title= "Bounce rate"
+        value="42.84%" />
+      </div>
+      
+      <div className="col-span-4 sm:col-span-2 xl:col-span-1">
+        <DashboardCard01
+        title= "Total Wallet IDs"
+        value="3257" />
+      </div>
+      <div className="col-span-4 sm:col-span-2 xl:col-span-1">
+        <DashboardCard01 
+        title= "Total NFTs Minted"
+        value="250"/>
+      </div>
+      <div className="col-span-4 sm:col-span-2 xl:col-span-1">
+        <DashboardCard01 
+        title= "Total NFTs Dropped"
+        value="228"/>
+      </div>
+      <div className="col-span-4 sm:col-span-2 xl:col-span-1">
+        <DashboardCard01 
+        title= "Total NFTs Pending"
+        value="15,002"/>
+      </div>
+    </div>
+
+<div className='mt-16'>
+    <DashboardCard05
+    title="Users" />
+    </div>
             {/* Cards */}
-            <div className="grid grid-cols-12 gap-6">
+            <div className="grid grid-cols-12 mt-16 gap-6">
 
               {/* Line chart (Acme Plus) */}
-              <DashboardCard01 />
-              {/* Line chart (Acme Advanced) */}
-              <DashboardCard02 />
-              {/* Line chart (Acme Professional) */}
-              <DashboardCard03 />
-              {/* Bar chart (Direct vs Indirect) */}
-              <DashboardCard04 />
-              {/* Line chart (Real Time Value) */}
-              <DashboardCard05 />
-              {/* Doughnut chart (Top Countries) */}
-              <DashboardCard06 />
+              
               {/* Table (Top Channels) */}
               <DashboardCard07 />
+               {/* Card (Reasons for Refunds) */}
+               <DashboardCard11 />
+              {/* Line chart (Real Time Value) */}
+              <DashboardCard05 
+              title="User Engagement"/>
+
+              <DashboardCard05 
+              title="Avge Engagement Time"/>
+              {/* Doughnut chart (Top Countries) */}
+              <DashboardCard06 />
+               {/* Bar chart (Direct vs Indirect) */}
+               <DashboardCard04 />
+             
               {/* Line chart (Sales Over Time) */}
               <DashboardCard08 />
               {/* Stacked bar chart (Sales VS Refunds) */}
               <DashboardCard09 />
               {/* Card (Customers) */}
               <DashboardCard10 />
-              {/* Card (Reasons for Refunds) */}
-              <DashboardCard11 />
+             
               {/* Card (Recent Activity) */}
               <DashboardCard12 />
               {/* Card (Income/Expenses) */}

@@ -5,7 +5,7 @@ import RealtimeChart from '../../charts/RealtimeChart';
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
-function DashboardCard05() {
+function DashboardCard05({title}) {
 
   // IMPORTANT:
   // Code below is for demo purpose only, and it's not covered by support.
@@ -88,7 +88,7 @@ function DashboardCard05() {
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
       <header className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center">
-        <h2 className="font-semibold text-slate-800 dark:text-slate-100">Real Time Value</h2>
+        <h2 className="font-semibold text-slate-800 dark:text-slate-100">{title}</h2>
         <Tooltip className="ml-2">
           <div className="text-xs text-center whitespace-nowrap">Built with <a className="underline" href="https://www.chartjs.org/" target="_blank" rel="noreferrer">Chart.js</a></div>
         </Tooltip>

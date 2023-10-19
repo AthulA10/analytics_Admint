@@ -46,7 +46,7 @@ function BarChart01({
               display: false,
             },
             ticks: {
-              maxTicksLimit: 5,
+              maxTicksLimit: 4,
               callback: (value) => formatValue(value),
               color: darkMode ? textColor.dark : textColor.light,
             },
