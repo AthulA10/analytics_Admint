@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../partials/Sidebar';
 import Header from '../partials/Header';
 import WelcomeBanner from '../partials/dashboard/WelcomeBanner';
@@ -22,8 +22,32 @@ import DashboardCard13 from '../partials/dashboard/DashboardCard13';
 import Banner from '../partials/Banner';
 
 function Dashboard() {
+  const [data, setData] = useState(null); // Initialize the data state
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Define an async function to fetch data from the open API
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://api.jsonbin.io/v3/b/6530e01212a5d376598dae7b');
+      if (response.ok) {
+        const jsonData = await response.json();
+        setData(jsonData.record); // Set the data state with the API response
+        console.log(jsonData);
+      } else {
+        console.error('Failed to fetch data');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []); // Run this effect only once when the component mounts
+
+  // Now you can access the data and display it in your components
+  const totalNfts = data ? data.values[0].web3.totalNfts : 0;  
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -72,7 +96,7 @@ function Dashboard() {
       <div className="col-span-4 sm:col-span-2 xl:col-span-1">
         <DashboardCard01 
         title= "Total Page Visits"
-        value="15,002"
+        value={totalNfts}
         />
       </div>
       <div className="col-span-4 sm:col-span-2 xl:col-span-1">
