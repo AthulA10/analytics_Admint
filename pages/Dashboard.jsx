@@ -280,8 +280,9 @@ function Dashboard() {
                {/* Doughnut chart (Top Countries) */}
               <DashboardCard06 />
                {/* Bar chart (Direct vs Indirect) */}
-               <DashboardCard04 
-               title="Users by browser"/>
+               {/* Stacked bar chart (Sales VS Refunds) */}
+              <DashboardCard09
+              title="Users by browser"/>
 
 
                {/* User engagement  */}
@@ -326,10 +327,15 @@ function Dashboard() {
 
               
              
-              {/* Line chart (Sales Over Time) */}
+            
+              
+            </div>
+
+            <div className='mt-16'>
+             user activity over time
               <DashboardCard08 />
-              {/* Stacked bar chart (Sales VS Refunds) */}
-              <DashboardCard09 />
+             </div>
+ <div className='mt-16 space-y-6 '>
               {/* Card (Customers) */}
               <DashboardCard10 />
              
@@ -337,9 +343,7 @@ function Dashboard() {
               <DashboardCard12 />
               {/* Card (Income/Expenses) */}
               <DashboardCard13 />
-              
-            </div>
-
+              </div>
           </div>
         </main>
 
