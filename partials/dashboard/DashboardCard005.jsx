@@ -5,7 +5,7 @@ import RealtimeChart from '../../charts/RealtimeChart';
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
-function DashboardCard05({title}) {
+function DashboardCard005({title,label1,label2,label3,val1,val2,val3}) {
 
   // IMPORTANT:
   // Code below is for demo purpose only, and it's not covered by support.
@@ -85,6 +85,16 @@ function DashboardCard05({title}) {
     ],
   };
 
+
+  const LabelValueDiv = ({ label, value }) => {
+    return (
+      <div className=" p-2 rounded-lg text-left">
+        <div className="font-semibold">{label}</div>
+        <div className="text-xl font-bold">{value}</div>
+      </div>
+    );
+  };
+
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
       <header className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center">
@@ -93,7 +103,11 @@ function DashboardCard05({title}) {
           <div className="text-xs text-center whitespace-nowrap">Built with <a className="underline" href="https://www.chartjs.org/" target="_blank" rel="noreferrer">Chart.js</a></div>
         </Tooltip>
       </header>
-      
+      <div className="flex ml-3 space-x-6 justify-left">
+      <LabelValueDiv label={label1} value={val1} />
+      <LabelValueDiv label={label2} value={val2} />
+      <LabelValueDiv label={label3} value={val3} />
+    </div>
       {/* Chart built with Chart.js 3 */}
       {/* Change the height attribute to adjust the chart height */}
       <RealtimeChart data={chartData} width={595} height={248} />
@@ -101,4 +115,4 @@ function DashboardCard05({title}) {
   );
 }
 
-export default DashboardCard05;
+export default DashboardCard005;

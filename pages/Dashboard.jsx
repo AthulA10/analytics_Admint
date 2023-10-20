@@ -19,7 +19,9 @@ import DashboardCard10 from '../partials/dashboard/DashboardCard10';
 import DashboardCard11 from '../partials/dashboard/DashboardCard11';
 import DashboardCard12 from '../partials/dashboard/DashboardCard12';
 import DashboardCard13 from '../partials/dashboard/DashboardCard13';
+import DashboardCard005 from '../partials/dashboard/DashboardCard005';
 import Banner from '../partials/Banner';
+import { tailwindConfig } from '../utils/Utils';
 
 function Dashboard() {
   const [data, setData] = useState(null); // Initialize the data state
@@ -47,7 +49,117 @@ function Dashboard() {
   }, []); // Run this effect only once when the component mounts
 
   // Now you can access the data and display it in your components
-  const totalNfts = data ? data.values[0].web3.totalNfts : 0;  
+  const totalNfts = data ? data.values[0].web3.totalNfts : 0;
+  const totalPageViews = data ? data.values[0].web2.pageViews.screenPageViews : 0;
+  const totalUsers = data ? data.values[0].web2.pageViews.totalUsers : 0;
+  
+  // Access data from the first element in the creativeDatas array
+  const firstCreative = data ? data.values[0].creativeDatas[0] : null;
+  const creativeId = firstCreative ? firstCreative.creativeId : '';
+  const baseCostPerNft = firstCreative ? firstCreative.baseCostPerNft : 0;
+  const imageUrl = firstCreative ? firstCreative.imageUrl : '';
+  
+  // Access event data
+  const eventData = data ? data.values[0].web2.eventData : [];
+
+  // Check if eventData is defined before trying to access its properties
+  const firstEventName = eventData && eventData[0] ? eventData[0].eventName : 'Missing';
+  
+
+  const chartData = {
+    labels: ['Reasons'],
+    datasets: [
+      {
+        label: "Angeles",
+        data: [131],
+        backgroundColor: tailwindConfig().theme.colors.indigo[500],
+        hoverBackgroundColor: tailwindConfig().theme.colors.indigo[600],
+        barPercentage: 1,
+        categoryPercentage: 1,
+      },
+      {
+        label: 'Manila',
+        data: [100],
+        backgroundColor: tailwindConfig().theme.colors.indigo[800],
+        hoverBackgroundColor: tailwindConfig().theme.colors.indigo[900],
+        barPercentage: 1,
+        categoryPercentage: 1,
+      },
+      {
+        label: 'Mabalacast',
+        data: [81],
+        backgroundColor: tailwindConfig().theme.colors.sky[400],
+        hoverBackgroundColor: tailwindConfig().theme.colors.sky[500],
+        barPercentage: 1,
+        categoryPercentage: 1,
+      },
+      {
+        label: 'Quezon City',
+        data: [65],
+        backgroundColor: tailwindConfig().theme.colors.green[400],
+        hoverBackgroundColor: tailwindConfig().theme.colors.green[500],
+        barPercentage: 1,
+        categoryPercentage: 1,
+      },
+      {
+        label: 'Other',
+        data: [72],
+        backgroundColor: tailwindConfig().theme.colors.slate[200],
+        hoverBackgroundColor: tailwindConfig().theme.colors.slate[300],
+        barPercentage: 1,
+        categoryPercentage: 1,
+      },
+    ],
+  };
+
+
+
+
+  const eventDatas = {
+    labels: ['Reasons'],
+    datasets: [
+      {
+        label: 'hkbf',
+        data: [131],
+        backgroundColor: tailwindConfig().theme.colors.indigo[500],
+        hoverBackgroundColor: tailwindConfig().theme.colors.indigo[600],
+        barPercentage: 1,
+        categoryPercentage: 1,
+      },
+      {
+        label: 'Manila',
+        data: [100],
+        backgroundColor: tailwindConfig().theme.colors.indigo[800],
+        hoverBackgroundColor: tailwindConfig().theme.colors.indigo[900],
+        barPercentage: 1,
+        categoryPercentage: 1,
+      },
+      {
+        label: 'Mabalacast',
+        data: [81],
+        backgroundColor: tailwindConfig().theme.colors.sky[400],
+        hoverBackgroundColor: tailwindConfig().theme.colors.sky[500],
+        barPercentage: 1,
+        categoryPercentage: 1,
+      },
+      {
+        label: 'Quezon City',
+        data: [65],
+        backgroundColor: tailwindConfig().theme.colors.green[400],
+        hoverBackgroundColor: tailwindConfig().theme.colors.green[500],
+        barPercentage: 1,
+        categoryPercentage: 1,
+      },
+      {
+        label: 'Other',
+        data: [72],
+        backgroundColor: tailwindConfig().theme.colors.slate[200],
+        hoverBackgroundColor: tailwindConfig().theme.colors.slate[300],
+        barPercentage: 1,
+        categoryPercentage: 1,
+      },
+    ],
+  };
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -138,28 +250,81 @@ function Dashboard() {
     </div>
 
 <div className='mt-16'>
-    <DashboardCard05
-    title="Users" />
+    <DashboardCard005
+    title="Users" 
+    
+    label1="Users"
+    val1="157"
+    
+    label2="New users"
+    val2="155"
+
+    label3="Average engagement time"
+    val3="0m 53s"
+    />
     </div>
             {/* Cards */}
             <div className="grid grid-cols-12 mt-16 gap-6">
 
               {/* Line chart (Acme Plus) */}
               
-              {/* Table (Top Channels) */}
+              {/* Users by country */}
               <DashboardCard07 />
-               {/* Card (Reasons for Refunds) */}
-               <DashboardCard11 />
-              {/* Line chart (Real Time Value) */}
-              <DashboardCard05 
-              title="User Engagement"/>
-
-              <DashboardCard05 
-              title="Avge Engagement Time"/>
-              {/* Doughnut chart (Top Countries) */}
+              
+               {/* users by city*/}
+               <DashboardCard11
+               title="Users by City"
+               chartData={chartData} />
+             
+               
+               {/* Doughnut chart (Top Countries) */}
               <DashboardCard06 />
                {/* Bar chart (Direct vs Indirect) */}
-               <DashboardCard04 />
+               <DashboardCard04 
+               title="Users by browser"/>
+
+
+               {/* User engagement  */}
+              <DashboardCard005 
+              title="User Engagement"
+
+              label1="Total Event Count"
+              val1="2K"
+
+              label2="Total Users"
+              val2="159"
+
+              label3="Event count per user"
+              val3="13"
+
+              />
+
+               {/* User engagement  */}
+              
+              
+              
+              <DashboardCard11
+               title="Event Count by Event Name"
+               chartData={eventDatas} />
+
+                {/* Avge engagement  */}
+              <DashboardCard005 
+              title="Engagement Time"
+              
+              label1="Average engagement time"
+              val1="0m 52s"
+
+              label2="Engaged sessions per user"
+              val2="0.94"
+              />
+
+               <DashboardCard05 
+              title="User Engagement"/>
+              
+
+              
+
+              
              
               {/* Line chart (Sales Over Time) */}
               <DashboardCard08 />
