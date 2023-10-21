@@ -60,17 +60,23 @@ function Dashboard() {
   const imageUrl = firstCreative ? firstCreative.imageUrl : '';
   
   // Access event data
-  const eventData = data ? data.values[0].web2.eventData : [];
+  const eventData = data ? data.values[0].web2.eventData.eventData : [];
 
   // Check if eventData is defined before trying to access its properties
   const firstEventName = eventData && eventData[0] ? eventData[0].eventName : 'Missing';
-  
+
+ 
+
+  const averageSessionTime = data ? data.values[0].web2.eventData.extra.value : 'N/A';
+  const formattedAverageSessionTime = averageSessionTime
+  ? `${parseFloat(averageSessionTime).toFixed(2)} sec`
+  : 'N/A';
 
   const chartData = {
     labels: ['Reasons'],
     datasets: [
       {
-        label: "Angeles",
+        label: totalNfts,
         data: [131],
         backgroundColor: tailwindConfig().theme.colors.indigo[500],
         hoverBackgroundColor: tailwindConfig().theme.colors.indigo[600],
@@ -119,7 +125,7 @@ function Dashboard() {
     labels: ['Reasons'],
     datasets: [
       {
-        label: 'hkbf',
+        label: "jhh",
         data: [131],
         backgroundColor: tailwindConfig().theme.colors.indigo[500],
         hoverBackgroundColor: tailwindConfig().theme.colors.indigo[600],
@@ -214,7 +220,7 @@ function Dashboard() {
       <div className="col-span-4 sm:col-span-2 xl:col-span-1">
         <DashboardCard01
         title= "Unique users"
-        value="8,085" />
+        value="8085" />
       </div>
       <div className="col-span-4 sm:col-span-2 xl:col-span-1">
         <DashboardCard01
@@ -254,13 +260,13 @@ function Dashboard() {
     title="Users" 
     
     label1="Users"
-    val1="157"
+    val1={totalUsers}
     
     label2="New users"
-    val2="155"
+    val2={"155"}
 
     label3="Average engagement time"
-    val3="0m 53s"
+    val3={formattedAverageSessionTime}
     />
     </div>
             {/* Cards */}
