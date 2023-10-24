@@ -3,21 +3,19 @@ import { useThemeProvider } from '../utils/ThemeContext';
 
 import { chartColors } from './ChartjsConfig';
 import {
-  Chart, BarController, BarElement, LinearScale, TimeScale, Tooltip, Legend,
+  Chart, BarController, BarElement, LinearScale, CategoryScale, Tooltip, Legend,
 } from 'chart.js';
-import 'chartjs-adapter-moment';
 
 // Import utilities
 import { formatValue } from '../utils/Utils';
 
-Chart.register(BarController, BarElement, LinearScale, TimeScale, Tooltip, Legend);
+Chart.register(BarController, BarElement, LinearScale, CategoryScale, Tooltip, Legend);
 
 function BarChart02({
   data,
   width,
   height
 }) {
-
   const [chart, setChart] = useState(null)
   const canvas = useRef(null);
   const { currentTheme } = useThemeProvider();
@@ -26,7 +24,6 @@ function BarChart02({
 
   useEffect(() => {
     const ctx = canvas.current;
-    // eslint-disable-next-line no-unused-vars
     const newChart = new Chart(ctx, {
       type: 'bar',
       data: data,
@@ -34,9 +31,9 @@ function BarChart02({
         layout: {
           padding: {
             top: 12,
-            bottom: 16,
-            left: 20,
-            right: 20,
+            bottom: 10,
+            left: 5,
+            right: 5,
           },
         },
         scales: {
@@ -50,6 +47,8 @@ function BarChart02({
               maxTicksLimit: 5,
               callback: (value) => formatValue(value),
               color: darkMode ? textColor.dark : textColor.light,
+              maxRotation: 90, // Rotate labels 90 degrees
+              minRotation: 90,
             },
             grid: {
               color: darkMode ? gridColor.dark : gridColor.light,
@@ -57,14 +56,7 @@ function BarChart02({
           },
           x: {
             stacked: true,
-            type: 'time',
-            time: {
-              parser: 'MM-DD-YYYY',
-              unit: 'month',
-              displayFormats: {
-                month: 'MMM YY',
-              },
-            },
+            type: 'category', // Set the x-axis type to 'category'
             border: {
               display: false,
             },
@@ -72,9 +64,10 @@ function BarChart02({
               display: false,
             },
             ticks: {
-              autoSkipPadding: 48,
-              maxRotation: 0,
+              maxTicksLimit: 10,
               color: darkMode ? textColor.dark : textColor.light,
+              maxRotation: 90, // Rotate labels 90 degrees
+              minRotation: 90, // Ensure labels are always rotated
             },
           },
         },
@@ -90,6 +83,7 @@ function BarChart02({
             bodyColor: darkMode ? tooltipBodyColor.dark : tooltipBodyColor.light,
             backgroundColor: darkMode ? tooltipBgColor.dark : tooltipBgColor.light,
             borderColor: darkMode ? tooltipBorderColor.dark : tooltipBorderColor.light,
+            textDirection: 'rtl',
           },
         },
         interaction: {
@@ -105,7 +99,6 @@ function BarChart02({
     });
     setChart(newChart);
     return () => newChart.destroy();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -130,7 +123,9 @@ function BarChart02({
   }, [currentTheme]);
 
   return (
-    <canvas ref={canvas} width={width} height={height}></canvas>
+    <div style={{ transform: 'rotate(90deg)' }}>
+      <canvas ref={canvas} width={height} height={width}></canvas>
+    </div>
   );
 }
 

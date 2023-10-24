@@ -70,8 +70,8 @@ function DashboardCard005({title,label1,label2,label3,val1,val2,val3}) {
       {
         data: slicedData,
         fill: true,
-        backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
-        borderColor: tailwindConfig().theme.colors.indigo[500],
+        backgroundColor: `#C3D9EE`,
+        borderColor:"#005FBB",
         borderWidth: 2,
         tension: 0,
         pointRadius: 0,

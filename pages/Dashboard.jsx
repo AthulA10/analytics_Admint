@@ -49,6 +49,8 @@ function Dashboard() {
   }, []); // Run this effect only once when the component mounts
 
   // Now you can access the data and display it in your components
+  const campaignName = data? data.values[0].campaignName: null;
+
   const totalNfts = data ? data.values[0].web3.totalNfts : 0;
   const totalPageViews = data ? data.values[0].web2.pageViews.screenPageViews : 0;
   const totalUsers = data ? data.values[0].web2.pageViews.totalUsers : 0;
@@ -171,7 +173,7 @@ function Dashboard() {
     <div className="flex h-screen overflow-hidden">
 
       {/* Sidebar */}
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      {/* <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
 
       {/* Content area */}
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
@@ -183,7 +185,10 @@ function Dashboard() {
           <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
             {/* Welcome banner */}
-            <WelcomeBanner />
+            <WelcomeBanner
+            userName="AdMint"
+            campaignName= {campaignName}
+            />
 
             {/* Dashboard actions */}
             <div className="sm:flex sm:justify-between sm:items-center mb-8">
@@ -285,8 +290,8 @@ function Dashboard() {
                
                {/* Doughnut chart (Top Countries) */}
               <DashboardCard06 />
-               {/* Bar chart (Direct vs Indirect) */}
-               {/* Stacked bar chart (Sales VS Refunds) */}
+              
+               {/*Users by browser*/}
               <DashboardCard09
               title="Users by browser"/>
 
